@@ -1,0 +1,59 @@
+<div class="form-container">
+  <header class="form-header">
+    <h2>פרסום נכס חדש</h2>
+    <p>מלא את הפרטים כדי להוסיף את הנכס למאגר היוקרה שלנו</p>
+  </header>
+
+  <form [formGroup]="propertyForm" (ngSubmit)="onSubmit()" class="luxury-form">
+    <div class="form-group">
+      <label>כותרת הנכס</label>
+      <input type="text" formControlName="title" placeholder="למשל: פנטהאוז מרהיב מול הים">
+      @if (propertyForm.get('title')?.touched && propertyForm.get('title')?.invalid) {
+        <small class="error">כותרת חייבת להכיל לפחות 5 תווים</small>
+      }
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>מחיר (₪)</label>
+        <input type="number" formControlName="price">
+      </div>
+      <div class="form-group">
+        <label>עיר</label>
+        <input type="text" formControlName="city">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>קטגוריה</label>
+       <select formControlName="categoryId">
+          <option [value]="1">דירת גן</option>
+          <option [value]="2">וילה</option>
+          <option [value]="3">דירת סטודיו</option>
+          <option [value]="4">משרד</option>
+       </select>
+      </div>
+      <div class="form-group">
+        <label>סטטוס</label>
+        <select formControlName="statusId">
+        <option [value]="1">פנוי</option>
+        <option [value]="2">במשא ומתן</option>
+        <option [value]="3">נמכר</option>
+     </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>תיאור מורחב</label>
+      <textarea formControlName="description" rows="5"></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="propertyForm.invalid || isSubmitting" class="btn-submit">
+        {{ isSubmitting ? 'שומר נתונים...' : 'פרסם נכס עכשיו' }}
+      </button>
+      <button type="button" routerLink="/" class="btn-cancel">ביטול</button>
+    </div>
+  </form>
+</div>

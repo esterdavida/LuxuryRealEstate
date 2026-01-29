@@ -1,0 +1,107 @@
+.luxury-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  direction: rtl;
+  font-family: 'Assistant', sans-serif;
+}
+
+/* תמונת Hero */
+.property-hero {
+  position: relative;
+  height: 500px;
+  border-radius: 25px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.property-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: linear-gradient(transparent, rgba(26, 42, 58, 0.9));
+  padding: 40px;
+  color: white;
+}
+
+.property-main-title { font-size: 3rem; margin: 0; }
+.location-tag { font-size: 1.2rem; color: #c5a059; }
+
+/* גריד ותוכן */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 40px;
+}
+
+.info-card {
+  background: white;
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  margin-bottom: 30px;
+}
+
+.gold-title {
+  color: #c5a059;
+  border-right: 4px solid #c5a059;
+  padding-right: 15px;
+  margin-bottom: 20px;
+}
+
+.desc-text { line-height: 1.8; font-size: 1.1rem; color: #444; }
+
+/* מפרט טכני */
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.spec-box {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.spec-box .label { display: block; font-size: 0.9rem; color: #888; }
+.spec-box .value { font-size: 1.1rem; font-weight: bold; color: #1a2a3a; }
+
+/* Sidebar וכפתורים */
+.contact-card {
+  background: #1a2a3a;
+  color: white;
+  padding: 40px;
+  border-radius: 25px;
+  text-align: center;
+}
+
+.gold-btn {
+  background: #c5a059;
+  color: #1a2a3a;
+  border: none;
+  padding: 15px;
+  width: 100%;
+  border-radius: 12px;
+  font-weight: bold;
+  margin: 20px 0 10px;
+  cursor: pointer;
+}
+
+.outline-btn {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 12px;
+  width: 100%;
+  border-radius: 12px;
+  cursor: pointer;
+}

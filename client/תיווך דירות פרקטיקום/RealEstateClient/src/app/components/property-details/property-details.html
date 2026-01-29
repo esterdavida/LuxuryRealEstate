@@ -1,0 +1,55 @@
+<div class="luxury-container">
+  @if (loading) {
+    <div class="loader">מעבד נתונים מהודרים...</div>
+  } @else if (property) {
+    
+    <div class="property-hero">
+     <img [src]="property.ImageUrl || 'https://loremflickr.com/1200/800/house,luxury/all?lock=' + (property.Id || property.id)" 
+     alt="Property Image" 
+     class="featured-img">
+      <div class="hero-overlay">
+        <h1 class="property-main-title">{{ property.Title || property.title }}</h1>
+        <p class="location-tag">📍 {{ property.City || property.city }}</p>
+      </div>
+    </div>
+
+    <div class="content-grid">
+      <div class="main-info">
+        <div class="info-card fade-in">
+          <h2 class="gold-title">תיאור הנכס</h2>
+          <p class="desc-text">{{ property.Description || property.description || 'אין תיאור זמין לנכס זה.' }}</p>
+        </div>
+
+        <div class="info-card fade-in">
+          <h2 class="gold-title">מפרט טכני</h2>
+          <div class="specs-grid">
+            <div class="spec-box">
+              <span class="label">סוג נכס</span>
+              <span class="value">{{ property.TypeName || property.typeName || 'דירת יוקרה' }}</span>
+            </div>
+            <div class="spec-box">
+              <span class="label">מחיר</span>
+              <span class="value">{{ (property.Price || property.price) | currency:'ILS':'symbol':'1.0-0' }}</span>
+            </div>
+            <div class="spec-box">
+              <span class="label">תאריך פרסום</span>
+              <span class="value">{{ (property.CreatedAt || property.createdAt) | date:'dd/MM/yyyy' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar">
+        <div class="contact-card sticky">
+          <h3>מעוניינים בנכס?</h3>
+          <p>המומחים שלנו ב-Premier Estate מחכים לשיחה מכם</p>
+          <button class="gold-btn">התקשרו עכשיו</button>
+          <button class="outline-btn" routerLink="/properties">חזרה לקטלוג</button>
+        </div>
+      </div>
+    </div>
+
+  } @else {
+    <div class="error-msg">נכס לא נמצא. <a routerLink="/properties">חזרה לרשימה</a></div>
+  }
+</div>

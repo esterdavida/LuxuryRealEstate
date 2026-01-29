@@ -1,0 +1,52 @@
+<div class="search-section">
+  <div class="search-container">
+    <h2 class="gold-text">מצא את נכס החלומות שלך</h2>
+    
+    <div class="search-controls">
+      <div class="input-group">
+        <label>חיפוש חופשי</label>
+        <input #searchText type="text" placeholder="עיר, סוג נכס..." 
+               (input)="onSearch(searchText.value, minPrice.value, maxPrice.value)">
+      </div>
+
+      <div class="input-group">
+        <label>מחיר מינימלי</label>
+        <input #minPrice type="number" placeholder="מ-" 
+               (input)="onSearch(searchText.value, minPrice.value, maxPrice.value)">
+      </div>
+
+      <div class="input-group">
+        <label>מחיר מקסימלי</label>
+        <input #maxPrice type="number" placeholder="עד-" 
+               (input)="onSearch(searchText.value, minPrice.value, maxPrice.value)">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="property-grid">
+  @for (p of properties; track p.id) {
+    <div class="property-card" [routerLink]="['/property', p.Id || p.id]">
+      
+      <div class="card-image-wrapper">
+        <img [src]="p.ImageUrl || 'https://loremflickr.com/800/600/house,luxury/all?lock=' + (p.Id || p.id)" 
+             alt="Property Image" 
+             class="main-img">
+        
+        <div class="price-tag">{{ (p.Price || p.price) | currency:'ILS':'symbol':'1.0-0' }}</div>
+        
+        <button class="delete-circle" (click)="deleteProperty(p.Id || p.id, $event)">🗑️</button>
+      </div>
+
+      <div class="card-content">
+        <h3 class="property-title">{{ p.Title || p.title }}</h3>
+        <p class="property-location">📍 {{ p.City || p.city }}</p>
+        
+        <div class="property-footer">
+          <span class="type-badge">{{ p.TypeName || p.typeName }}</span>
+          <span class="date">{{ (p.CreatedAt || p.createdAt) | date:'dd/MM/yyyy' }}</span>
+        </div>
+      </div>
+    </div>
+  }
+</div>
