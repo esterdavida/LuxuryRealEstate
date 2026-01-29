@@ -1,0 +1,19 @@
+USE [RealEstateDB]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Properties_GetAll]    Script Date: 29/01/2026 18:01:39 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE   PROCEDURE [dbo].[Properties_GetAll]
+AS
+BEGIN
+    SELECT * FROM Properties;
+END
+GO
+
+

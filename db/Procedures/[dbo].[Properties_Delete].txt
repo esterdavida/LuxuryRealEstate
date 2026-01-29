@@ -1,0 +1,19 @@
+USE [RealEstateDB]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Properties_Delete]    Script Date: 29/01/2026 17:59:31 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[Properties_Delete]
+    @Id INT
+AS
+BEGIN
+    DELETE FROM Properties WHERE Id = @Id;
+END
+GO
+
+

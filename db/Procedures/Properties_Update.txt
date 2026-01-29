@@ -1,0 +1,33 @@
+USE [RealEstateDB]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Properties_Update]    Script Date: 29/01/2026 18:04:46 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[Properties_Update]
+    @Id INT,                       -- חובה לקבל את ה-ID כדי לדעת איזה נכס לעדכן
+    @Title NVARCHAR(100),
+    @Description NVARCHAR(MAX),
+    @Price DECIMAL(18,2),
+    @City NVARCHAR(50),
+    @StatusId INT,
+    @CategoryId INT
+AS
+BEGIN
+    UPDATE Properties
+    SET 
+        Title = @Title,
+        Description = @Description,
+        Price = @Price,
+        City = @City,
+        StatusId = @StatusId,
+        CategoryId = @CategoryId
+    WHERE Id = @Id;              
+END
+GO
+
+

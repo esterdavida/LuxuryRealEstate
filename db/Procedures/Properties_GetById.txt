@@ -1,0 +1,26 @@
+USE [RealEstateDB]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Properties_GetById]    Script Date: 29/01/2026 18:02:50 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[Properties_GetById]
+    @Id INT
+AS
+BEGIN
+    SELECT 
+        p.*, 
+        s.StatusName,    
+        pt.TypeName      
+    FROM Properties p
+    LEFT JOIN Statuses s ON p.StatusId = s.Id -- שינוי ל-LEFT JOIN
+    LEFT JOIN PropertyTypes pt ON p.CategoryId = pt.Id -- שינוי ל-LEFT JOIN
+    WHERE p.Id = @Id;
+END
+GO
+
+

@@ -1,0 +1,25 @@
+USE [RealEstateDB]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Properties_Create]    Script Date: 29/01/2026 17:50:11 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[Properties_Create]
+    @Title NVARCHAR(100),
+    @Description NVARCHAR(MAX),
+    @Price DECIMAL(18,2),
+    @City NVARCHAR(50),
+    @StatusId INT,
+    @CategoryId INT
+AS
+BEGIN
+    INSERT INTO Properties (Title, Description, Price, City, StatusId, CategoryId)
+    VALUES (@Title, @Description, @Price, @City, @StatusId, @CategoryId);
+END
+GO
+
+

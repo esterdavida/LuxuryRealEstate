@@ -1,0 +1,44 @@
+USE [RealEstateDB]
+GO
+
+/****** Object:  Table [dbo].[Properties]    Script Date: 29/01/2026 17:27:55 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Properties](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](100) NOT NULL,
+	[Description] [nvarchar](max) NULL,
+	[Price] [decimal](18, 2) NULL,
+	[City] [nvarchar](50) NULL,
+	[StatusId] [int] NULL,
+	[CategoryId] [int] NULL,
+	[CreatedAt] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Properties] ADD  DEFAULT (getdate()) FOR [CreatedAt]
+GO
+
+ALTER TABLE [dbo].[Properties]  WITH CHECK ADD  CONSTRAINT [FK_Properties_PropertyTypes] FOREIGN KEY([CategoryId])
+REFERENCES [dbo].[PropertyTypes] ([Id])
+GO
+
+ALTER TABLE [dbo].[Properties] CHECK CONSTRAINT [FK_Properties_PropertyTypes]
+GO
+
+ALTER TABLE [dbo].[Properties]  WITH CHECK ADD  CONSTRAINT [FK_Properties_Statuses] FOREIGN KEY([StatusId])
+REFERENCES [dbo].[Statuses] ([Id])
+GO
+
+ALTER TABLE [dbo].[Properties] CHECK CONSTRAINT [FK_Properties_Statuses]
+GO
+
+

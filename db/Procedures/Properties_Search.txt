@@ -1,0 +1,28 @@
+USE [RealEstateDB]
+GO
+
+/****** Object:  StoredProcedure [dbo].[Properties_Search]    Script Date: 29/01/2026 18:03:50 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[Properties_Search]
+    @SearchText NVARCHAR(100) = NULL,
+    @MinPrice DECIMAL(18,2) = NULL,
+    @MaxPrice DECIMAL(18,2) = NULL
+AS
+BEGIN
+    SELECT p.*, s.StatusName, pt.TypeName
+    FROM Properties p
+    JOIN Statuses s ON p.StatusId = s.Id
+    JOIN PropertyTypes pt ON p.CategoryId = pt.Id
+    WHERE 
+        (@SearchText IS NULL OR p.Title LIKE '%' + @SearchText + '%' OR p.City LIKE '%' + @SearchText + '%')
+        AND (@MinPrice IS NULL OR p.Price >= @MinPrice)
+        AND (@MaxPrice IS NULL OR p.Price <= @MaxPrice);
+END
+GO
+
+
